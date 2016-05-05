@@ -20,4 +20,5 @@ To install nektar++, replace default cmake files with the files in this repo
 mkdir build & cd build
 Configure using CC=icc CXX=icc ccmake ..
 NOTE: Turn on cmake options for linking with LIBIFPORT and LIBIFCORE
+Turn on MKL and turn off NATIVE_SYSTEM_BLAS_LAPACK
 Install using make install 
