@@ -8,9 +8,8 @@
 
 #If the user has not set BOOST_ROOT, look in a couple common places first.
 MESSAGE(STATUS "Searching for Boost:")
-#SET(MIN_VER "1.52.0")
-SET(MIN_VER "1.55.0")
-SET(BOOST_ROOT $ENV{TACC_BOOST_INC})
+SET(MIN_VER "1.59.0")
+SET(BOOST_ROOT "/opt/apps/intel16/boost/1.59/include")
 SET(NEEDED_BOOST_LIBS thread iostreams date_time filesystem system
     program_options regex timer)
 SET(Boost_DEBUG 0)

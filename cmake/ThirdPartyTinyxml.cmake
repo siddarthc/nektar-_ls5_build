@@ -10,8 +10,8 @@ OPTION(NEKTAR_USE_TINYXML_STL "Use STL with TinyXML library." ON)
 MARK_AS_ADVANCED(NEKTAR_USE_TINYXML_STL)
 
 # First search for system TinyXML installs. Hint /opt/local for MacPorts.
-FIND_PATH   (TINYXML_INCLUDE_DIR tinyxml.h PATHS /opt/local/include)
-FIND_LIBRARY(TINYXML_LIBRARY NAMES "tinyxml" PATHS /opt/local/lib)
+FIND_PATH   (TINYXML_INCLUDE_DIR tinyxml.h PATHS /work/02138/siddarth/lonestar/libraries/tinyxml/build/include)
+FIND_LIBRARY(TINYXML_LIBRARY NAMES "tinyxml" PATHS /work/02138/siddarth/lonestar/libraries/tinyxml/build/lib)
 
 # If we have our library then don't build TinyXML.
 IF (TINYXML_INCLUDE_DIR AND TINYXML_LIBRARY)

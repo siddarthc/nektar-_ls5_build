@@ -1,11 +1,12 @@
 
 SET(XXT_SEARCH_PATHS 
-	${CMAKE_SOURCE_DIR}/ThirdParty/gsmpi-1.2/
-	${CMAKE_SOURCE_DIR}/ThirdParty/gsmpi-1.2/build/
-	${CMAKE_SOURCE_DIR}/../ThirdParty/gsmpi-1.2/
-	${CMAKE_SOURCE_DIR}/../ThirdParty/gsmpi-1.2/build 
-    ${CMAKE_SOURCE_DIR}/ThirdParty/dist/lib 
-    ${CMAKE_SOURCE_DIR}/../ThirdParty/dist/lib)
+#	${CMAKE_SOURCE_DIR}/ThirdParty/gsmpi-1.2/
+#	${CMAKE_SOURCE_DIR}/ThirdParty/gsmpi-1.2/build/
+#	${CMAKE_SOURCE_DIR}/../ThirdParty/gsmpi-1.2/
+#	${CMAKE_SOURCE_DIR}/../ThirdParty/gsmpi-1.2/build 
+#    ${CMAKE_SOURCE_DIR}/ThirdParty/dist/lib 
+#    ${CMAKE_SOURCE_DIR}/../ThirdParty/dist/lib
+    /work/02138/siddarth/lonestar/libraries/gsmpi-1.2/lib)
 
 FIND_LIBRARY(XXT_LIBRARY NAMES xxt PATHS ${XXT_SEARCH_PATHS})
 
@@ -17,7 +18,9 @@ ENDIF (XXT_LIBRARY)
 
 IF (XXT_FOUND)
   IF (NOT XXT_FIND_QUIETLY)
-     MESSAGE(STATUS "Found XXT")
+     MESSAGE(STATUS "Found XXT: ${XXT_SEARCH_PATHS}")
+     LINK_DIRECTORIES(/work/02138/siddarth/lonestar/libraries/gsmpi-1.2/lib)
+     INCLUDE_DIRECTORIES(/work/02138/siddarth/lonestar/libraries/gsmpi-1.2)
   ENDIF (NOT XXT_FIND_QUIETLY)
 ELSE(XXT_FOUND)
   IF (XXT_FIND_REQUIRED)

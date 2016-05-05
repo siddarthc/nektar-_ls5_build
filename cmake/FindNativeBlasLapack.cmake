@@ -1,6 +1,6 @@
 
 
-SET(NATIVE_BLAS_LAPACK_SEARCH_PATHS /usr/lib /usr/lib64 /usr/local/lib /usr/local/lib64 )
+SET(NATIVE_BLAS_LAPACK_SEARCH_PATHS /usr/lib /usr/lib64 /usr/local/lib /usr/local/lib64 /work/02138/siddarth/lonestar/lapack-3.6.0/build/lib)
 
 FIND_LIBRARY(NATIVE_BLAS NAMES blas PATHS ${NATIVE_BLAS_LAPACK_SEARCH_PATHS})
 FIND_LIBRARY(NATIVE_LAPACK NAMES lapack PATHS ${NATIVE_BLAS_LAPACK_SEARCH_PATHS})

@@ -5,7 +5,7 @@
 # Modified METIS library
 #
 ########################################################################
-
+IF(0)
 INCLUDE(ExternalProject)
 
 EXTERNALPROJECT_ADD(
@@ -28,15 +28,18 @@ EXTERNALPROJECT_ADD(
         -DGKLIB_PATH:PATH=${TPSRC}/modmetis-5.1.0/GKlib
         ${TPSRC}/modmetis-5.1.0
 )
+ENDIF()
 
 SET(METIS_LIB metis CACHE FILEPATH "METIS library" FORCE)
 MARK_AS_ADVANCED(METIS_LIB)
 
-LINK_DIRECTORIES(${TPDIST}/lib)
-INCLUDE_DIRECTORIES(${TPDIST}/include)
-
+#LINK_DIRECTORIES(${TPDIST}/lib)
+LINK_DIRECTORIES(/work/02138/siddarth/lonestar/libraries/modmetis-5.1.0/build/lib)
+#INCLUDE_DIRECTORIES(${TPDIST}/include)
+INCLUDE_DIRECTORIES(/work/02138/siddarth/lonestar/libraries/modmetis-5.1.0/build/include)
 IF (WIN32)
     MESSAGE(STATUS "Build Metis: ${TPDIST}/${LIB_DIR}/${METIS_LIB}.dll")
 ELSE ()
-    MESSAGE(STATUS "Build Metis: ${TPDIST}/${LIB_DIR}/lib${METIS_LIB}.a")
+#    MESSAGE(STATUS "Build Metis: ${TPDIST}/${LIB_DIR}/lib${METIS_LIB}.a")
+    MESSAGE(STATUS "Build Metis: /work/02138/siddarth/lonestar/libraries/modmetis-5.1.0/build/lib/lib${METIS_LIB}.a")
 ENDIF()

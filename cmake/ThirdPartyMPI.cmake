@@ -50,6 +50,7 @@ IF( NEKTAR_USE_MPI )
     ADD_DEFINITIONS(-DNEKTAR_USE_MPI)
 
     IF (THIRDPARTY_BUILD_GSMPI)
+
         EXTERNALPROJECT_ADD(
             gsmpi-1.2
             URL ${TPURL}/gsmpi-1.2.tar.bz2
@@ -69,14 +70,18 @@ IF( NEKTAR_USE_MPI )
                 -DCMAKE_INSTALL_PREFIX:PATH=${TPDIST}
                 ${TPSRC}/gsmpi-1.2
         )
-        SET(GSMPI_LIBRARY gsmpi CACHE FILEPATH
-            "GSMPI path" FORCE)
+
+#        SET(GSMPI_LIBRARY gsmpi CACHE FILEPATH
+#            "GSMPI path" FORCE)
+        SET(GSMPI_LIBRARY gsmpi CACHE FILEPATH /work/02138/siddarth/lonestar/libraries/gsmpi-1.2/lib FORCE)
         MARK_AS_ADVANCED(GSMPI_LIBRARY)
-        SET(XXT_LIBRARY xxt CACHE FILEPATH
-            "XXT path" FORCE)
-        MARK_AS_ADVANCED(XXT_LIBRARY)
-        MESSAGE(STATUS "Build GSMPI: ${TPDIST}/lib/lib${GSMPI_LIBRARY}.a")
-        MESSAGE(STATUS "Build XXT: ${TPDIST}/lib/lib${XXT_LIBRARY}.a")
+#        SET(XXT_LIBRARY xxt CACHE FILEPATH
+#            "XXT path" FORCE)
+       SET(XXT_LIBRARY xxt CACHE FILEPATH /work/02138/siddarth/lonestar/libraries/gsmpi-1.2/lib FORCE) 
+       MARK_AS_ADVANCED(XXT_LIBRARY)        
+
+        MESSAGE(STATUS "Build GSMPI: /work/02138/siddarth/lonestar/libraries/gsmpi-1.2/lib/lib${GSMPI_LIBRARY}.a")
+        MESSAGE(STATUS "Build XXT: /work/02138/siddarth/lonestar/libraries/gsmpi-1.2/lib/lib${XXT_LIBRARY}.a")
     ELSE (THIRDPARTY_BUILD_GSMPI)
         ADD_CUSTOM_TARGET(gsmpi-1.2 ALL)
         INCLUDE (FindGSMPI)

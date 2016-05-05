@@ -14,6 +14,7 @@ SET(SOLVER_UTILS_SOURCES
   Diffusion/DiffusionLFR.cpp
   Diffusion/DiffusionLFRNS.cpp
   Driver.cpp
+  DriverAdaptive.cpp
   DriverArnoldi.cpp
   DriverModifiedArnoldi.cpp
   DriverStandard.cpp
@@ -27,6 +28,8 @@ SET(SOLVER_UTILS_SOURCES
   Filters/FilterEnergyBase.cpp
   Filters/FilterHistoryPoints.cpp
   Filters/FilterModalEnergy.cpp
+  Filters/FilterMovingAverage.cpp
+  Filters/FilterSampler.cpp
   Filters/FilterThresholdMax.cpp
   Filters/FilterThresholdMin.cpp
   RiemannSolvers/RiemannSolver.cpp
@@ -38,7 +41,6 @@ SET(SOLVER_UTILS_SOURCES
   Forcing/ForcingBody.cpp
   Forcing/ForcingNoise.cpp
   Forcing/ForcingProgrammatic.cpp
-  Forcing/ForcingWavyness.cpp
 )
 
 SET(SOLVER_UTILS_HEADERS
@@ -57,6 +59,7 @@ SET(SOLVER_UTILS_HEADERS
   Diffusion/DiffusionLFR.h
   Diffusion/DiffusionLFRNS.h
   Driver.h
+  DriverAdaptive.h
   DriverArnoldi.h
   DriverModifiedArnoldi.h
   DriverStandard.h
@@ -70,6 +73,8 @@ SET(SOLVER_UTILS_HEADERS
   Filters/FilterEnergyBase.h
   Filters/FilterHistoryPoints.h
   Filters/FilterModalEnergy.h
+  Filters/FilterMovingAverage.h
+  Filters/FilterSampler.h
   Filters/FilterThresholdMax.h
   Filters/FilterThresholdMin.h
   RiemannSolvers/RiemannSolver.h
@@ -83,7 +88,6 @@ SET(SOLVER_UTILS_HEADERS
   Forcing/ForcingBody.h
   Forcing/ForcingNoise.h
   Forcing/ForcingProgrammatic.h
-  Forcing/ForcingWavyness.h
 )
 
 IF (NEKTAR_USE_ARPACK)
@@ -96,6 +100,17 @@ ENDIF (NEKTAR_USE_ARPACK)
 ADD_DEFINITIONS(-DSOLVER_UTILS_EXPORTS)
 
 ADD_NEKTAR_LIBRARY(SolverUtils lib ${NEKTAR_LIBRARY_TYPE} ${SOLVER_UTILS_SOURCES} ${SOLVER_UTILS_HEADERS})
-TARGET_LINK_LIBRARIES(SolverUtils MultiRegions)
+
+IF (NEKTAR_LINK_IFCORE)
+   IF (NEKTAR_LINK_IFPORT)
+     TARGET_LINK_LIBRARIES(SolverUtils GlobalMapping ifcore ifport)
+   ELSE ()
+      TARGET_LINK_LIBRARIES(SolverUtils GlobalMapping ifcore)
+   ENDIF()
+ELSEIF (NEKTAR_LINK_GFORTRAN)
+    TARGET_LINK_LIBRARIES(SolverUtils GlobalMapping gfortran)
+ELSE () 
+     TARGET_LINK_LIBRARIES(SolverUtils GlobalMapping)
+ENDIF ()
 
 INSTALL(DIRECTORY ./ DESTINATION ${NEKTAR_INCLUDE_DIR}/SolverUtils COMPONENT dev FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")
