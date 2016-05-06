@@ -16,7 +16,7 @@ The compiled softwares are located in ThirdParty.tar.gz
 
 Just download ThirdParty.tar.gz, untar and link with nektar++
 
-To link the libaries, navigate to the the directory cmake and give path to the libary in the make file for that library
+To link the libaries, navigate to the the directory cmake and give path to the libary in the make file for that library  
 For example, to link ARPACK, navigate to file cmake/FindArpack.cmake and change the library search path.
 
 To install nektar++, replace default cmake files with the files in this repo  
