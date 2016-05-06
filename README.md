@@ -16,9 +16,13 @@ The compiled softwares are located in ThirdParty.tar.gz
 
 Just download ThirdParty.tar.gz, untar and link with nektar++
 
+To link the libaries, navigate to the the directory cmake and give path to the libary in the make file for that library
+For example, to link ARPACK, navigate to file cmake/FindArpack.cmake and change the library search path.
+
 To install nektar++, replace default cmake files with the files in this repo  
 mkdir build & cd build  
 Configure using CC=icc CXX=icc ccmake ..  
 NOTE: Turn on cmake options for linking with LIBIFPORT and LIBIFCORE  
 Turn on MKL and turn off NATIVE_SYSTEM_BLAS_LAPACK  
+Also, life is easier when PETSC is turned off. The linear solvers in nektar++ are working fine
 Install using make install   
